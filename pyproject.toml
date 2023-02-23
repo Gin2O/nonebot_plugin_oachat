@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "nonebot_plugin_oachat"
+version = "0.1.6"
+description = "A nonebot2 plugin package for openai api chatBot"
+authors = ["Gin2O <wulun0102@outlook.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = " "
+repository = "https://github.com/gin2o/nonebot_plugin_oachat"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+aiohttp = "^3.8.4"
+httpx = "^0.23.3"
+nonebot2 = "^2.0.0rc3"
+nonebot-adapter-onebot = "^2.2.1"
+openai = "^0.26.5"
+
+[project.urls]
+"Homepage" = "https://github.com/gin2o/nonebot_plugin_oachat"
+"Bug Tracker" = "https://github.com/gin2o/nonebot_plugin_oachat/issues"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

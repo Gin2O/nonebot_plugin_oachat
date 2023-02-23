@@ -11,18 +11,17 @@ from nonebot.params import CommandArg
 from nonebot.adapters.onebot.v11 import (Message, MessageSegment)
 
 # 读取配置
-model_id = nonebot.get_driver().config.openai_api_modelid
 try:
+    model_id = nonebot.get_driver().config.openai_api_modelid
     api_key = nonebot.get_driver().config.openai_api_key
-except:
-    api_key = "没有api"
-try:
     max_tokens = nonebot.get_driver().config.openai_max_tokens
+    oachat_on_command = nonebot.get_driver().config.oachat_on_command
 except:
+    model_id = "text-davinci-003"
+    api_key = "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"
     max_tokens = 2000
+    oachat_on_command = "/chat"
 
-
-oachat_on_command = nonebot.get_driver().config.oachat_on_command
 
 __plugin_meta__ = PluginMetadata(
     name="OpenAI chatbot",
