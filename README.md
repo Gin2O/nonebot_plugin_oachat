@@ -11,7 +11,7 @@
 _✨ NoneBot openai api ——简单的调用接口  ✨_
 
 <a href="https://pypi.org/project/nonebot-plugin-oachat">
-    <img src="https://img.shields.io/pypi/v/nonebot-plugin-note.svg" alt="pypi">
+    <img src="https://img.shields.io/pypi/v/nonebot-plugin-oachat.svg" alt="pypi">
 </a>
 
 </div>
