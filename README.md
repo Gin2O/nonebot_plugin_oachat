@@ -62,11 +62,13 @@ nonebot.load_plugin('nonebot_plugin_oachat')
 
 有bug有什么想法都可以告诉我，可先用e-mail联系：wulun0102@outlook.com
 
+> 本项目只是为了一个简单可分离的接口，以便接入后续的新api
+
+
+
 ## 更新记录
 - 2023.0303 更新OpenAI回复逻辑的补全问题，详情参照[issue-01](https://github.com/Gin2O/nonebot_plugin_oachat/issues/1) 
-
-
-- 本项目只是为了一个简单可分离的接口，以便接入后续的新api
+- 
 
 
 
