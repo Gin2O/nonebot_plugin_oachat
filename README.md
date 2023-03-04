@@ -10,7 +10,7 @@
 
 _✨ NoneBot openai api ——简单的调用接口  ✨_
 
-<a href="https://pypi.python.org/pypi/nonebot-plugin-note">
+<a href="https://pypi.org/project/nonebot-plugin-oachat">
     <img src="https://img.shields.io/pypi/v/nonebot-plugin-note.svg" alt="pypi">
 </a>
 
@@ -35,7 +35,7 @@ nb plugin install nonebot-plugin-oachat
 # ====== WULUN_OACHATBOT ======   # 没有上下文的OPENAI
 oachat_on_command = /chat
 
-OPENAI_API_KEY = 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
+OPENAI_API_KEY = sk-************************************************
 OPENAI_API_MODELID = "text-davinci-003"
 OPENAI_MAX_TOKENS = 1000
 ```
@@ -62,6 +62,8 @@ nonebot.load_plugin('nonebot_plugin_oachat')
 
 有bug有什么想法都可以告诉我，可先用e-mail联系：wulun0102@outlook.com
 
+## 更新记录
+- 2023.0303 更新OpenAI回复逻辑的补全问题，详情参照[issue-01](https://github.com/Gin2O/nonebot_plugin_oachat/issues/1) 
 
 
 - 本项目只是为了一个简单可分离的接口，以便接入后续的新api
@@ -71,7 +73,7 @@ nonebot.load_plugin('nonebot_plugin_oachat')
 # 🐦 TODO list
 
 - [ ] 加入上下文对话；
-- [ ] 等待大家的反馈；
+- [ ] 适配ChatGPT API；
 - [ ] 搞到本地模型；
 - [ ] 增解除文本输出限制；
 

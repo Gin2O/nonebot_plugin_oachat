@@ -18,7 +18,8 @@ try:
     oachat_on_command = nonebot.get_driver().config.oachat_on_command
 except:
     model_id = "text-davinci-003"
-    api_key = "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"
+    # 填入自己申请的api
+    api_key = "sk-************************************************"
     max_tokens = 2000
     oachat_on_command = "/chat"
 
@@ -61,7 +62,7 @@ async def _(msg: Message = CommandArg()):
     prompt = msg.extract_plain_text()
     if prompt == "" or prompt == None or prompt.isspace():
         await oachat.finish("输入东西啊喂！")
-    await oachat.send(MessageSegment.text("Duang ing..."))
+    await oachat.send(MessageSegment.text("enmm..."))
     loop = asyncio.get_event_loop()
     # 不同转递方法
     # try:
@@ -73,4 +74,4 @@ async def _(msg: Message = CommandArg()):
         res = await loop.run_in_executor(None, oaBot.generate_response, prompt)
     except Exception as e:
         await oachat.finish(str(e))
-    await oachat.finish(MessageSegment.text(oaBot.analyze_chat_responses(res)))
+    await oachat.finish(MessageSegment.text(oaBot.analyze_chat_responses(prompt, res)), at_sender=True)

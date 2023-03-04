@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nonebot_plugin_oachat"
-version = "0.1.6"
+version = "0.1.8"
 description = "A nonebot2 plugin package for openai api chatBot"
 authors = ["Gin2O <wulun0102@outlook.com>"]
 license = "MIT"

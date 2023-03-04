@@ -36,19 +36,23 @@ class OpenApiChatbot:
         return response  # 返回响应中的完整文本
 
     # 定义一个函数，用于解析 ChatGPT API 的响应
+    def analyze_chat_responses(self, prompt, response):
 
-    def analyze_chat_responses(self, resp):
-
-        chatResp = resp.choices[0].text
-        # 移除所有开头的\n
-        while (chatResp.startswith("\n") != chatResp.startswith("？")):
+        chatResp = response.choices[0].text
+        while (chatResp.startswith("\n") != chatResp.startswith("？") != chatResp.startswith(" ")):
             chatResp = chatResp[1:]
-        print(str(chatResp))
+
+        # 补全问题
+        completion_ques, chatResp = replace_completion_question(chatResp)
+
+        while chatResp.startswith("\n"):
+            chatResp = chatResp[1:]
+        # 组合消息输出
+        chatResp = prompt + completion_ques + "\n" + "oachat：" + "\n" + chatResp
 
         return chatResp
 
     # 定义一个函数，用于解析 ChatGPT API 的响应并获取所有输出结果
-
     def analyze_all_responses(self, resp):
         # 获取 def generate_response 响应的数据，并解析
         choices = resp['choices']
@@ -60,3 +64,72 @@ class OpenApiChatbot:
         print(str(allResp))
 
         return allResp
+
+
+# 未启用
+def replace_first_short_string(text):
+
+    import re
+
+    target_str = ""
+    # 定义匹配模式
+    # 方法1 查找第一个符合条件的字符串
+
+    # 方法2 使用正则表达式匹配第一个满足要求的字符串
+    match = re.search(r'^[\u4e00-\u9fa5]{1,12}(?=\n)', text, flags=re.M)
+    if match is not None:
+        target_str = match.group()
+        # 方法1：将找到的字符串替换为 "*"
+        text = text.replace(target_str, "\n" + "*" * len(target_str), 1)
+        # 方法2：将找到的字符串替换为 "*"
+        # text = re.sub(target_str,  "\n" + "*" * len(target_str), text)
+
+    # 返回替换后的字符串
+    return text
+
+
+def replace_completion_question(text):
+
+    import re
+
+    completion_ques = ""
+    # 定义匹配模式
+    # # 方法1 查找第一个符合条件的字符串 正则式有点问题
+
+    # 方法2 使用正则表达式匹配第一个满足要求的字符串
+    if is_chinese(text):
+        # print('is_chinese')
+        match = re.search(r'^[\u4e00-\u9fa5]{1,12}(?=\n)', text, flags=re.M)
+        if match is not None:
+            completion_ques = match.group()
+            # 方法1：将找到的字符串替换为 "\n"
+            text = text.replace(completion_ques, "", 1)
+
+    elif is_english(text):
+        # print('is_english')
+        match = re.search(
+            r"^(?:\s*[a-zA-Z]\w*(?:['’-]\w+)*\s){0,10}[a-zA-Z]\w*(?:['’-]\w+)*(?=\n)", text, flags=re.M)
+        if match is not None:
+            completion_ques = match.group()
+            text = text.replace(completion_ques, "", 1)
+
+            while completion_ques.startswith(" "):
+                completion_ques = completion_ques[1:]
+            completion_ques = " " + completion_ques
+
+    # 返回替换后的字符串
+    return completion_ques, text
+
+
+def is_chinese(text):
+    for char in text:
+        if '\u4e00' <= char <= '\u9fff':
+            return True
+    return False
+
+
+def is_english(text):
+    for char in text:
+        if ('\u0041' <= char <= '\u005a') or ('\u0061' <= char <= '\u007a'):
+            return True
+    return False
